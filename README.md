@@ -11,9 +11,8 @@ Mausam is a modern, intuitive, and beautifully designed weather application buil
 
 ##  How to Run 
 
+https://npc-mausam.streamlit.app/
 
-
-    The application will open in your default web browser.
 
 ##  Usage
 
