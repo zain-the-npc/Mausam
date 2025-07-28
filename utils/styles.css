@@ -1,0 +1,353 @@
+/* --- CSS Variables for Easy Theming --- */
+:root {
+    /* Vibrant, Lively, Vibey Background Colors (Deep cosmic to vibrant neon) */
+    --bg-color-start: #0A021F; /* Very dark deep purple */
+    --bg-color-mid: #1A053F;   /* Darker violet */
+    --bg-color-end: #3A0B7F;   /* Deep vibrant violet */
+
+    /* Card & Text Colors */
+    --card-bg-color: rgba(255, 255, 255, 0.05); /* Very subtle translucent white for cards */
+    --text-primary: #E0FFFF;   /* Bright white/cyan for main text */
+    --text-secondary: #99BBDD; /* Muted blue-gray for secondary text */
+
+    /* Blazing Edge Accents - Now with Blue Focus */
+    --accent-blaze-1: #00BFFF; /* Deep Sky Blue - Primary accent */
+    --accent-blaze-2: #1E90FF; /* Dodger Blue - Secondary accent */
+    --accent-blaze-3: #FFD700; /* Gold/Yellow for warmth/glow (e.g., temperature) */
+
+    /* Borders & Shadows */
+    --border-radius-main: 16px; /* Slightly larger radius */
+    --border-radius-sm: 10px;
+    --shadow-deep: 0 15px 30px rgba(0, 0, 0, 0.6); /* Stronger overall shadow */
+    --shadow-glow-blaze-blue: 0 0 25px rgba(0, 191, 255, 0.6), 0 0 40px rgba(30, 144, 255, 0.4); /* Blue glow */
+}
+
+/* --- Global Body & Base Styles --- */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    background: var(--bg-color-start); /* Fallback */
+}
+
+/* Vibrant background for a premium, blazing feel */
+body {
+    font-family: 'IBM Plex Sans', sans-serif; /* Keep for general text readability */
+    color: var(--text-primary);
+    background: linear-gradient(135deg, var(--bg-color-start) 0%, var(--bg-color-mid) 50%, var(--bg-color-end) 100%);
+    -webkit-font-smoothing: antialiased; /* Smoother fonts on WebKit browsers */
+    -moz-osx-font-smoothing: grayscale; /* Smoother fonts on Firefox */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Ensure Streamlit's main container spans full width/height for background */
+[data-testid="stAppViewContainer"] {
+    background: transparent !important;
+}
+[data-testid="stHeader"] {
+    background: transparent !important;
+}
+
+/* Main content alignment and padding */
+[data-testid="stAppViewContainer"] > .main {
+    padding: var(--padding-lg) var(--padding-md); /* Adjusted padding for tighter fit */
+    max-width: 700px; /* Reduced max-width for overall smaller feel */
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: auto;
+    gap: 1.5rem; /* Space between main elements */
+}
+
+
+/* --- Custom App Headers (Mausam Title) --- */
+h1.app-title {
+    font-family: 'Open Sans', sans-serif; /* Changed to Open Sans */
+    font-weight: 800; /* Extra Bold for impact with Open Sans */
+    font-size: clamp(3.5rem, 10vw, 5rem); /* Larger and more responsive */
+    text-align: center;
+    letter-spacing: 5px; /* More aggressive letter spacing for impact */
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+
+    /* Removed blur/glow, now sharp and crisp blue/cyan */
+    color: var(--text-primary); /* Use a solid color directly */
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* A simple, sharp shadow for contrast */
+    background: none; /* Remove any background gradient text clip */
+    -webkit-background-clip: unset; /* Reset background clip */
+    -webkit-text-fill-color: unset; /* Reset text fill color */
+    animation: none; /* Disable pulsing animation */
+}
+
+
+p.app-subtitle {
+    font-family: 'IBM Plex Sans', sans-serif;
+    text-align: center;
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    color: var(--text-secondary);
+    font-weight: 300;
+    margin-bottom: var(--padding-lg);
+    max-width: 500px;
+    opacity: 0.8;
+}
+
+/* --- Input Field Styling --- */
+.stTextInput > label {
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.stTextInput > div > div > input {
+    background-color: var(--card-bg-color);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--border-radius-sm);
+    padding: 1rem 1.2rem;
+    font-size: 1.15rem;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Placeholder color */
+.stTextInput > div > div > input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.5;
+}
+
+/* Input focus effect - now uses blue accent */
+.stTextInput > div > div > input:focus {
+    border-color: var(--accent-blaze-1); /* Primary blue accent on focus */
+    box-shadow: 0 0 0 3px rgba(0, 191, 255, 0.4); /* Stronger blue glow and outline, removed shadow-glow-blaze-blue for crispness */
+    outline: none;
+}
+
+/* --- Weather Result Card Styling --- */
+.weather-card {
+    background-color: var(--card-bg-color);
+    border-radius: var(--border-radius-main);
+    padding: var(--padding-lg);
+    margin-top: var(--padding-md);
+    box-shadow: var(--shadow-deep);
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease-out;
+    animation: fadeInScale 0.7s ease-out forwards;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    text-align: center;
+}
+
+.weather-card-header {
+    font-family: 'IBM Plex Sans', sans-serif; /* Keep for header */
+    font-weight: 600; /* Ensure strong weight */
+    font-size: clamp(1.6rem, 4.5vw, 2.1rem);
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    letter-spacing: 1px;
+    position: relative;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.3); /* Subtle glow for header */
+}
+.weather-card-header::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 70px;
+    height: 4px;
+    background-color: var(--accent-blaze-2); /* Secondary blue accent for underline */
+    border-radius: 2px;
+}
+
+.main-temp {
+    font-family: 'Roboto Mono', monospace;
+    font-size: clamp(3.8rem, 12vw, 5rem);
+    font-weight: 700;
+    color: var(--accent-blaze-3); /* Gold/Yellow for temperature */
+    text-align: center;
+    margin: 1.5rem 0;
+    text-shadow: 0 0 25px rgba(255, 215, 0, 0.6); /* Stronger, golden glow */
+}
+
+/* Styling for individual weather parameters (Humidity, Wind, etc.) */
+.weather-param {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    font-weight: 400;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+.weather-param .icon {
+    font-size: 1.7em;
+    line-height: 1;
+}
+
+.param-value {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-top: 0.2rem;
+    text-align: center;
+}
+
+
+/* --- Streamlit Native Element Overrides (General) --- */
+.stMarkdown p {
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: var(--text-primary);
+}
+
+/* Alerts (st.success, st.info, st.error) */
+.stAlert {
+    border-radius: var(--border-radius-sm);
+    padding: var(--padding-sm) var(--padding-md);
+    margin-top: var(--padding-md);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 0.95rem;
+    box-shadow: var(--shadow-light);
+    border: 1px solid transparent;
+}
+
+.stAlert.st-success {
+    background-color: rgba(34, 197, 94, 0.15) !important;
+    color: #a7f3d0 !important;
+    border-color: rgba(34, 197, 94, 0.3) !important;
+}
+.stAlert.st-info {
+    background-color: rgba(59, 130, 246, 0.15) !important;
+    color: #bfdbfe !important;
+    border-color: rgba(59, 130, 246, 0.3) !important;
+}
+.stAlert.st-error {
+    background-color: rgba(239, 68, 68, 0.15) !important;
+    color: #fecaca !important;
+    border-color: rgba(239, 68, 68, 0.3) !important;
+}
+
+/* Mood Quote Styling */
+.mood-quote {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1rem;
+    color: var(--accent-blaze-3);
+    text-align: center;
+    margin-top: var(--padding-lg);
+    padding: var(--padding-sm) var(--padding-md);
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: var(--border-radius-sm);
+    border-left: 4px solid var(--accent-blaze-1); /* Uses blue accent */
+    box-shadow: var(--shadow-light);
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.95) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+
+/* --- Responsive Design Adjustments --- */
+@media (max-width: 768px) {
+    [data-testid="stAppViewContainer"] > .main {
+        padding: var(--padding-md) var(--padding-sm);
+        gap: 1rem;
+    }
+    h1.app-title {
+        font-size: clamp(2.5rem, 10vw, 4rem);
+        letter-spacing: 4px;
+    }
+    p.app-subtitle {
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+        margin-bottom: var(--padding-md);
+    }
+    .stTextInput > div > div > input {
+        font-size: 1.05rem;
+        padding: 0.8rem 1rem;
+    }
+    .weather-card {
+        padding: var(--padding-md);
+        max-width: 95%;
+    }
+    .weather-card-header {
+        font-size: clamp(1.3rem, 5vw, 1.8rem);
+    }
+    .main-temp {
+        font-size: clamp(3rem, 15vw, 4rem);
+    }
+    .weather-param {
+        font-size: 0.9rem;
+    }
+    .param-value {
+        font-size: 1rem;
+    }
+    .mood-quote {
+        font-size: 0.95rem;
+        padding: var(--padding-sm);
+    }
+}
+
+@media (max-width: 480px) {
+    h1.app-title {
+        font-size: clamp(2rem, 12vw, 3.5rem);
+        letter-spacing: 2px;
+    }
+    p.app-subtitle {
+        font-size: 0.8rem;
+        margin-bottom: var(--padding-sm);
+    }
+    .stTextInput > div > div > input {
+        font-size: 0.95rem;
+        padding: 0.6rem 0.8rem;
+    }
+    .weather-card {
+        padding: var(--padding-sm);
+    }
+    .weather-card-header {
+        font-size: clamp(1.1rem, 6vw, 1.4rem);
+        letter-spacing: 0.5px;
+    }
+    .main-temp {
+        font-size: clamp(2.5rem, 18vw, 3.5rem);
+    }
+    .weather-param {
+        flex-direction: column; /* Stack icon and text on very small screens */
+        text-align: center;
+        gap: 0.2rem;
+        font-size: 0.8rem;
+    }
+    .param-value {
+        font-size: 0.9rem;
+    }
+    .mood-quote {
+        font-size: 0.85rem;
+        padding: 0.8rem;
+        margin-top: var(--padding-md);
+    }
+}
