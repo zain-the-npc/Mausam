@@ -42,10 +42,10 @@ cd Mausam
 pip install -r requirements.txt
 ```
 
-Get a free API key from [WeatherAPI.com](https://www.weatherapi.com), then create `.streamlit/secrets.toml`:
+Get a free API key from [WeatherAPI.com](https://www.weatherapi.com), then create a `.env` file in the project root (copy `.env.example` and fill it in):
 
-```toml
-WEATHER_API_KEY = "your-key-here"
+```
+WEATHER_API_KEY=your-key-here
 ```
 
 Run it:
