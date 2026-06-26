@@ -1,6 +1,7 @@
 import requests
+import streamlit as st
 
-API_KEY = "4dc756b5fe1e462983972458252807" 
+API_KEY = st.secrets["WEATHER_API_KEY"]
 
 def get_weather_data(city):
     try:

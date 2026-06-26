@@ -1,27 +1,63 @@
-# Mausam
+# Mausam 🌦️
 
-Mausam is a modern, intuitive, and beautifully designed weather application built with Streamlit. It provides real-time atmospheric insights for any city worldwide, combining clean aesthetics with essential weather data.
+**A weather app that doesn't just tell you the forecast — it sets the mood.**
 
-## ✨ Features
+Mausam (Urdu/Hindi for "weather") pulls live conditions for any city and pairs them with a matching quote and ambient soundscape — rain sounds for a rainy day, a breezy track when it's windy, calm cloud ambience for an overcast sky. It's a weather app built to *feel* like the weather, not just report it.
 
-* **Real-time Weather Data:** Get current temperature, condition, humidity, and wind speed.
-* **Responsive Design:** Optimized for a seamless experience across various devices, from mobile to desktop.
-* **Intuitive Interface:** A clean, professional, and user-friendly design for easy navigation and readability.
-* **Contextual Mood Quotes:** Receive delightful quotes relevant to the current weather condition.
-
-##  How to Run 
-
-https://npc-mausam.streamlit.app/
-
-
-##  Usage
-
-1.  Enter the name of any city in the input field.
-2.  Press Enter (or click outside the input field).
-3.  View the current weather conditions, temperature, and a mood-setting quote.
-
-##  Credits
-
-Designed and Developed by **Zain**
+🔗 **Live app:** [mausam.streamlit.app](https://mausam.streamlit.app)
 
 ---
+
+## What it does ✨
+
+- 🌍 **Live weather for any city** — temperature, condition, humidity, and wind speed
+- 💬 **Mood-matched quotes** — a different line for rain, clear skies, clouds, wind, mist, and snow
+- 🎵 **Ambient sound on autoplay** — background audio that matches the current condition
+- 🎨 **Custom-styled UI** — a dedicated weather card with custom fonts and dark theme styling
+
+## How it works 🧩
+
+```
+city name → WeatherAPI.com → condition + temp + humidity + wind
+                                   ↓
+                    matched quote + matched ambient sound
+```
+
+Mausam calls [WeatherAPI.com](https://www.weatherapi.com) for real-time conditions, then maps the returned condition text (rain, clear, cloud, wind, mist, snow) to a corresponding quote and an autoplaying audio clip, rendered through a custom Streamlit component.
+
+## Tech stack 🛠️
+
+| Layer | Tech |
+|---|---|
+| App framework | Streamlit |
+| Weather data | WeatherAPI.com |
+| Audio | Base64-embedded autoplay via Streamlit components |
+| Styling | Custom CSS, Google Fonts (IBM Plex Sans, Open Sans) |
+
+## Running it locally 🚀
+
+```bash
+git clone https://github.com/zain-the-npc/Mausam.git
+cd Mausam
+pip install -r requirements.txt
+```
+
+Get a free API key from [WeatherAPI.com](https://www.weatherapi.com), then create `.streamlit/secrets.toml`:
+
+```toml
+WEATHER_API_KEY = "your-key-here"
+```
+
+Run it:
+
+```bash
+streamlit run app.py
+```
+
+## Screenshot 📸
+
+![Mausam screenshot](screenshots/mausam_ss_02.png)
+
+---
+
+Designed and developed by Zain.

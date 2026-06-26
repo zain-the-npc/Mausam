@@ -117,13 +117,13 @@ if city:
             # --- Background Sound based on condition ---
             sound_file = None
             if "rain" in weather['condition'].lower():
-                sound_file = "assets/rainy.mp3"
+                sound_file = "assets/sounds/rainy.mp3"
             elif "clear" in weather['condition'].lower():
-                sound_file = "assets/sunny.mp3"
+                sound_file = "assets/sounds/sunny.mp3"
             elif "wind" in weather['condition'].lower():
-                sound_file = "assets/breezy.mp3"
+                sound_file = "assets/sounds/breezy.mp3"
             elif "cloud" in weather['condition'].lower() or "overcast" in weather['condition'].lower():
-                 sound_file = "assets/cloudy.mp3" # Assume you have this or similar
+                 sound_file = "assets/sounds/cloudy.mp3"
 
             if sound_file:
                 play_background_sound(sound_file)
