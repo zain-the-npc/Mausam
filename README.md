@@ -15,7 +15,7 @@ Mausam (Urdu/Hindi for "weather") pulls live conditions for any city and pairs t
 - 🎵 **Ambient sound on autoplay** — background audio that matches the current condition
 - 🎨 **Custom-styled UI** — a dedicated weather card with custom fonts and dark theme styling
 
-## How it works 🧩
+## How it works  🧩
 
 ```
 city name → WeatherAPI.com → condition + temp + humidity + wind
